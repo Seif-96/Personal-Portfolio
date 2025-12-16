@@ -63,6 +63,9 @@
   <link rel="icon" type="image/png" href="imgs/favicon.png" />
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
+  <!-- my Stylesheet -->
+  <link rel="stylesheet" href="css/cssTwo.css" />
+
 </head>
 
 <body
@@ -656,7 +659,7 @@
         </div>
       </div>
     </section>
-
+    <!-- معرض المشاريع -->
     <section id="portfolio" class="py-24 px-4 md:px-8 bg-white dark:bg-slate-900/50 relative overflow-hidden"
       aria-labelledby="portfolio-title">
       <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full filter blur-3xl opacity-10"></div>
@@ -1698,14 +1701,14 @@
               </div>
               <div>
                 <label id="project-type-label" class="block text-lg font-medium mb-2">نوع المشروع</label>
-                <div class="custom-select-wrapper relative">
+                <div id="customSelectWrapper" class="custom-select-wrapper relative">
                   <div
                     class="custom-select w-full bg-white dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-xl px-6 py-4 text-slate-800 dark:text-white focus:border-primary transition-all cursor-pointer flex justify-between items-center hover:border-primary"
                     data-name="project-type" role="combobox" aria-labelledby="project-type-label"
                     aria-haspopup="listbox" aria-expanded="false" tabindex="0">
                     <span class="selected-text text-slate-500 dark:text-slate-400">اختر نوع المشروع</span>
                     <i class="fa-solid fa-chevron-down transition-transform duration-300 text-slate-600 dark:text-slate-400"
-                      aria-hidden="true"></i>
+                      aria-hidden="true" id="chevronDownOne"></i>
                   </div>
                   <div
                     class="custom-options absolute w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl mt-2 shadow-2xl z-50 hidden overflow-hidden"
@@ -1740,18 +1743,22 @@
               </div>
               <div>
                 <label id="budget-label" class="block text-lg font-medium mb-2">الميزانية المتوقعة</label>
-                <div class="custom-select-wrapper relative">
+                <!-- customSelectWrapperTwo -->
+                <div id="customSelectWrapperTwo" class="custom-select-wrapper relative">
                   <div
                     class="custom-select w-full bg-white dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-xl px-6 py-4 text-slate-800 dark:text-white focus:border-primary transition-all cursor-pointer flex justify-between items-center hover:border-primary"
                     data-name="budget" role="combobox" aria-labelledby="budget-label" aria-haspopup="listbox"
                     aria-expanded="false" tabindex="0">
                     <span class="selected-text text-slate-500 dark:text-slate-400">اختر الميزانية</span>
-                    <i class="fa-solid fa-chevron-down transition-transform duration-300 text-slate-600 dark:text-slate-400"
+                    <!-- chevronDownTwo -->
+                    <i id="chevronDownTwo"
+                      class="fa-solid fa-chevron-down transition-transform duration-300 text-slate-600 dark:text-slate-400"
                       aria-hidden="true"></i>
                   </div>
                   <div
                     class="custom-options absolute w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl mt-2 shadow-2xl z-50 hidden overflow-hidden"
-                    role="listbox" aria-labelledby="budget-label">
+                    role="listbox" id="listboxTwo" aria-labelledby="budget-label">
+                    <!-- listboxTwo -->
                     <div
                       class="custom-option px-6 py-3 hover:bg-secondary/20 cursor-pointer transition-colors text-slate-700 dark:text-slate-200"
                       data-value="أقل من 20,000 جنيه" role="option">
@@ -1968,7 +1975,7 @@
           <div class="space-y-3" role="radiogroup" aria-label="اختيار نوع الخط">
             <button
               class="font-option w-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all text-right group relative overflow-hidden"
-              data-font="alexandria" role="radio" aria-checked="false" type="button">
+              data-font="alexandria" role="radio" aria-checked="false" type="button" id="alexandriaFont">
               <span
                 class="font-alexandria block text-lg font-bold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors mb-1">Alexandria</span>
               <span class="text-xs text-slate-400">Alexandria</span>
@@ -1981,7 +1988,7 @@
 
             <button
               class="font-option w-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all text-right group relative overflow-hidden"
-              data-font="tajawal" role="radio" aria-checked="true" type="button">
+              data-font="tajawal" role="radio" aria-checked="true" type="button" id="tajawalFont">
               <span
                 class="font-tajawal block text-lg font-bold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors mb-1">Tajawal</span>
               <span class="text-xs text-slate-400">الخط الافتراضي</span>
@@ -1994,7 +2001,7 @@
 
             <button
               class="font-option w-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all text-right group relative overflow-hidden"
-              data-font="cairo" role="radio" aria-checked="false" type="button">
+              data-font="cairo" role="radio" aria-checked="false" type="button" id="cairoFont">
               <span
                 class="font-cairo block text-lg font-bold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors mb-1">Cairo</span>
               <span class="text-xs text-slate-400">Cairo</span>
