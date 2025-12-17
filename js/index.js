@@ -44,6 +44,9 @@ btnScrollToTop.addEventListener("click", function () {
     behavior: "smooth",
   });
 });
+//
+let bageStyle = [];
+localStorage.setItem("BageStyle", JSON.stringify(bageStyle));
 // settings-toggle
 let settingsToggle = document.querySelector("#settings-toggle");
 let settingsSidebar = document.querySelector("#settings-sidebar");
@@ -183,7 +186,6 @@ resetSettings.addEventListener("click", function () {
   tajawal();
   defTheme();
 });
-
 // // form
 // // customSelectWrapper
 // let customSelectWrapper = document.querySelector("#customSelectWrapper");
