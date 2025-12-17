@@ -1,14 +1,12 @@
 // toggleBtn bage mode
 let html = document.documentElement;
 let toggleBtn = document.querySelector("#theme-toggle-button");
-
 toggleBtn.addEventListener("click", function () {
   html.classList.toggle("dark");
 });
 // mobileMenuBtn
 let mobileMenuBtn = document.querySelector(".mobile-menu-btn");
 let navLinks = document.querySelector(".nav-links");
-
 mobileMenuBtn.addEventListener("click", function () {
   navLinks.classList.toggle("active");
 });
@@ -52,15 +50,25 @@ let settingsSidebar = document.querySelector("#settings-sidebar");
 // open settings Toggle
 settingsToggle.addEventListener("click", function () {
   settingsSidebar.classList.remove("translate-x-full");
-  settingsToggle.classList.add("hidden");
+  settingsToggle.style.transform = "translateX(-20rem)";
 });
-
 // close settingsToggle
 let closeSettings = document.querySelector("#close-settings");
 // closeSettings
 closeSettings.addEventListener("click", function () {
   settingsSidebar.classList.add("translate-x-full");
-  settingsToggle.classList.remove("hidden");
+  settingsToggle.style.transform = "translateX(0rem)";
+});
+// move btn of settings
+document.addEventListener("click", (e) => {
+  if (
+    !settingsSidebar.contains(e.target) &&
+    !settingsToggle.contains(e.target)
+  ) {
+    console.log("wellcom");
+    settingsSidebar.classList.add("translate-x-full");
+    settingsToggle.style.transform = "translateX(0rem)";
+  }
 });
 // fonts
 let alexandriaFont = document.querySelector("#alexandriaFont");
@@ -109,6 +117,14 @@ for (let i = 0; i < themeColorsArray.length; i++) {
   display: flex;
   justify-content: center;
   align-items: center;`;
+  // hove
+  themeColorsArray[i].classList.add(
+    "theme-colors",
+    "transition-transform",
+    "duration-300",
+    "ease-in-out",
+    "hover:scale-110"
+  );
 }
 // call all themes
 let themeOne = document.querySelector("#themeOne");
