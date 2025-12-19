@@ -3,6 +3,11 @@ let html = document.documentElement;
 let toggleBtn = document.querySelector("#theme-toggle-button");
 toggleBtn.addEventListener("click", function () {
   html.classList.toggle("dark");
+  if (html.classList.contains("dark")) {
+    localStorage.setItem("themeMode", "dark");
+  } else {
+    localStorage.setItem("themeMode", "light");
+  }
 });
 // mobileMenuBtn
 let mobileMenuBtn = document.querySelector(".mobile-menu-btn");
@@ -44,9 +49,8 @@ btnScrollToTop.addEventListener("click", function () {
     behavior: "smooth",
   });
 });
-//
-let bageStyle = [];
-localStorage.setItem("BageStyle", JSON.stringify(bageStyle));
+// localStorage
+
 // settings-toggle
 let settingsToggle = document.querySelector("#settings-toggle");
 let settingsSidebar = document.querySelector("#settings-sidebar");
@@ -68,7 +72,6 @@ document.addEventListener("click", (e) => {
     !settingsSidebar.contains(e.target) &&
     !settingsToggle.contains(e.target)
   ) {
-    console.log("wellcom");
     settingsSidebar.classList.add("translate-x-full");
     settingsToggle.style.transform = "translateX(0rem)";
   }
@@ -87,6 +90,7 @@ function tajawal() {
   tajawalFont.classList.add("active");
   alexandriaFont.classList.remove("active");
   cairoFont.classList.remove("active");
+  localStorage.setItem("selectedFont", "tajawal"); // save font
 }
 // alexandriaFont
 alexandriaFont.addEventListener("click", function () {
@@ -96,6 +100,7 @@ alexandriaFont.addEventListener("click", function () {
   alexandriaFont.classList.add("active");
   tajawalFont.classList.remove("active");
   cairoFont.classList.remove("active");
+  localStorage.setItem("selectedFont", "alexandria");
 });
 // cairoFont
 cairoFont.addEventListener("click", function () {
@@ -105,6 +110,7 @@ cairoFont.addEventListener("click", function () {
   cairoFont.classList.add("active");
   alexandriaFont.classList.remove("active");
   tajawalFont.classList.remove("active");
+  localStorage.setItem("selectedFont", "cairo");
 });
 // theme-colors-grid
 let themeColors = document.querySelectorAll(".theme-colors");
@@ -116,9 +122,9 @@ for (let i = 0; i < themeColorsArray.length; i++) {
   height: 3.125rem;
   border-radius: 50%;
   cursor: pointer;
-  outline: 0.125rem solid;
   display: flex;
   justify-content: center;
+  border: 0.125rem solid #222e4bff;
   align-items: center;`;
   // hove
   themeColorsArray[i].classList.add(
@@ -128,6 +134,8 @@ for (let i = 0; i < themeColorsArray.length; i++) {
     "ease-in-out",
     "hover:scale-110"
   );
+  // for outline
+  themeColorsArray[0].style.outline = "0.125rem solid #7263F3";
 }
 // call all themes
 let themeOne = document.querySelector("#themeOne");
@@ -149,88 +157,217 @@ function defTheme() {
   document.documentElement.style.setProperty("--color-primary", "#6366f1");
   document.documentElement.style.setProperty("--color-secondary", "#8b5cf6");
   document.documentElement.style.setProperty("--color-accent", "#a855f7");
+  localStorage.setItem("selectedTheme", "themeOne"); // save site color
+  // for outline
+  themeColorsArray.forEach((el) => (el.style.outline = "0"));
+  themeOne.style.outline = "0.125rem solid #7263F3";
 }
 //themeTwo
 themeTwo.addEventListener("click", () => {
   document.documentElement.style.setProperty("--color-primary", "#ec4899");
   document.documentElement.style.setProperty("--color-secondary", "#f97316");
   document.documentElement.style.setProperty("--color-accent", "#fb923c");
+  // for outline
+  themeColorsArray.forEach((el) => (el.style.outline = "0"));
+  themeTwo.style.outline = "0.125rem solid #F35E55";
+  localStorage.setItem("selectedTheme", "themeTwo"); // save site color
 });
 //themeThree
 themeThree.addEventListener("click", () => {
   document.documentElement.style.setProperty("--color-primary", "#10b981");
   document.documentElement.style.setProperty("--color-secondary", "#059669");
   document.documentElement.style.setProperty("--color-accent", "#34d399");
+  // for outline
+  themeColorsArray.forEach((el) => (el.style.outline = "0"));
+  themeThree.style.outline = "0.125rem solid #0AA775";
+  localStorage.setItem("selectedTheme", "themeThree"); // save site color
 });
 //themeFour
 themeFour.addEventListener("click", () => {
   document.documentElement.style.setProperty("--color-primary", "#3b82f6");
   document.documentElement.style.setProperty("--color-secondary", "#06b6d4");
   document.documentElement.style.setProperty("--color-accent", "#22d3ee");
+  // for outline
+  themeColorsArray.forEach((el) => (el.style.outline = "0"));
+  themeFour.style.outline = "0.125rem solid #18A5E0";
+  localStorage.setItem("selectedTheme", "themeFour"); // save site color
 });
 //themeFive
 themeFive.addEventListener("click", () => {
   document.documentElement.style.setProperty("--color-primary", "#ef4444");
   document.documentElement.style.setProperty("--color-secondary", "#f43f5e");
   document.documentElement.style.setProperty("--color-accent", "#fb7185");
+  // for outline
+  themeColorsArray.forEach((el) => (el.style.outline = "0"));
+  themeFive.style.outline = "0.125rem solid #F14152";
+  localStorage.setItem("selectedTheme", "themeFive"); // save site color
 });
 //themeSix
 themeSix.addEventListener("click", () => {
   document.documentElement.style.setProperty("--color-primary", "#f59e0b");
   document.documentElement.style.setProperty("--color-secondary", "#ea580c");
   document.documentElement.style.setProperty("--color-accent", "#fbbf24");
+  // for outline
+  themeColorsArray.forEach((el) => (el.style.outline = "0"));
+  themeSix.style.outline = "0.125rem solid #EF770B";
+  localStorage.setItem("selectedTheme", "themeSix"); // save site color
 });
+// localStorage
+window.addEventListener("DOMContentLoaded", () => {
+  // savedMode
+  const savedMode = localStorage.getItem("themeMode");
+  if (savedMode === "light") {
+    html.classList.remove("dark");
+  } else {
+    html.classList.add("dark");
+  }
+  // font
+  const savedFont = localStorage.getItem("selectedFont");
+  if (savedFont) {
+    if (savedFont === "tajawal") tajawal();
+    if (savedFont === "alexandria") alexandriaFont.click();
+    if (savedFont === "cairo") cairoFont.click();
+  }
+  // color
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme) {
+    document.querySelector(`#${savedTheme}`).click();
+  }
+});
+
 // resetSettings
 let resetSettings = document.querySelector("#reset-settings");
 resetSettings.addEventListener("click", function () {
   tajawal();
   defTheme();
+  localStorage.removeItem("themeMode");
+  localStorage.removeItem("selectedFont");
+  localStorage.removeItem("selectedTheme");
+  html.classList.add("dark");
 });
-// // form
-// // customSelectWrapper
-// let customSelectWrapper = document.querySelector("#customSelectWrapper");
-// // chevronDown
-// let chevronDown = document.querySelector("#chevronDownOne");
-// // listbox
-// let listbox = document.querySelector('[role="listbox"]');
-// // open listbox
-// customSelectWrapper.addEventListener("click", function () {
-//   listbox.classList.toggle("hidden");
-//   chevronDown.classList.toggle("rotate-180");
-// });
-// // close listbox
-// document.addEventListener("click", function (e) {
-//   if (!customSelectWrapper.contains(e.target)) {
-//     listbox.classList.add("hidden");
-//     chevronDown.classList.remove("rotate-180");
-//   }
-// });
-// // options
-// // let selectedText = customSelectWrapper.querySelector(".selected-text");
-// // let options = listbox.querySelectorAll(".custom-option");
-// // options.forEach((option) => {
-// //   option.addEventListener("click", function () {
-// //     let value = this.dataset.value;
-// //     selectedText.textContent = value;
-// //     listbox.classList.add("hidden");
-// //     chevronDown.classList.remove("rotate-180");
-// //   });
-// // });
-// // // customSelectWrapperTwo
-// // let customSelectWrapperTwo = document.querySelector("#customSelectWrapperTwo");
-// // // chevronDown
-// // let chevronDownTwo = document.querySelector("#chevronDownTwo");
-// // // listboxTwo
-// // let listboxTwo = document.querySelector("#listboxTwo");
-// // // open listboxTwo
-// // customSelectWrapperTwo.addEventListener("click", function () {
-// //   listboxTwo.classList.toggle("hidden");
-// //   chevronDownTwo.classList.toggle("rotate-180");
-// // });
-// // // close listboxTwo
-// // document.addEventListener("click", function (e) {
-// //   if (!customSelectWrapperTwo.contains(e.target)) {
-// //     listboxTwo.classList.toggle("hidden");
-// //     chevronDownTwo.classList.remove("rotate-180");
-// //   }
-// // });
+// nav & tab
+const filters = document.querySelectorAll(".portfolio-filter");
+const items = document.querySelectorAll(".portfolio-item");
+// btn all
+const defaultBtn = document.querySelector('[data-filter="all"]');
+// save btn style
+const defaultStyle = window.getComputedStyle(defaultBtn);
+// change btn style
+function applyActiveStyle(btn) {
+  btn.style.background = defaultStyle.background;
+  btn.style.color = defaultStyle.color;
+  btn.style.boxShadow = defaultStyle.boxShadow;
+  btn.style.border = defaultStyle.border;
+}
+// deff byn style
+function resetStyle(btn) {
+  btn.style.background = "";
+  btn.style.color = "";
+  btn.style.boxShadow = "";
+  btn.style.border = "";
+}
+filters.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // btn all style
+    filters.forEach((b) => {
+      b.classList.remove("active");
+      b.setAttribute("aria-pressed", "false");
+      resetStyle(b);
+    });
+    // play btn
+    btn.classList.add("active");
+    btn.setAttribute("aria-pressed", "true");
+    applyActiveStyle(btn);
+    const filterValue = btn.dataset.filter;
+    // show styl
+    items.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "scale(0.8)";
+      setTimeout(() => {
+        if (filterValue === "all" || item.dataset.category === filterValue) {
+          item.style.display = "block";
+          requestAnimationFrame(() => {
+            item.style.opacity = "1";
+            item.style.transform = "scale(1)";
+          });
+        } else {
+          item.style.display = "none";
+        }
+      }, 200);
+    });
+  });
+});
+// the slider
+const carousel = document.querySelector("#testimonials-carousel");
+const slides = document.querySelectorAll(".testimonial-card");
+const next = document.querySelector("#next-testimonial");
+const prev = document.querySelector("#prev-testimonial");
+const dots = document.querySelectorAll(".carousel-indicator");
+
+let index = 0;
+// display
+function slide(step) {
+  index += step;
+  if (index >= slides.length) index = 0;
+  if (index < 0) index = slides.length - 1;
+  carousel.style.transform = `translateX(-${index * 33.333}%)`;
+  dots.forEach((dot) => dot.classList.remove("bg-accent", "active"));
+  if (dots[index]) dots[index].classList.add("bg-accent", "active");
+}
+dots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    index = Number(dot.dataset.index);
+    slide(0);
+  });
+});
+next.addEventListener("click", () => slide(1));
+prev.addEventListener("click", () => slide(-1));
+
+// كل الـ custom selects
+const customSelects = document.querySelectorAll(".custom-select-wrapper");
+
+customSelects.forEach((wrapper) => {
+  const select = wrapper.querySelector(".custom-select");
+  const options = wrapper.querySelector(".custom-options");
+  const icon = select.querySelector("i");
+  const selectedText = select.querySelector(".selected-text");
+  // فتح/غلق القائمة عند الضغط على select
+  select.addEventListener("click", () => {
+    const isOpen = !options.classList.contains("hidden");
+    // اغلاق كل القوائم الاخرى
+    document.querySelectorAll(".custom-options").forEach((opt) => {
+      opt.classList.add("hidden");
+    });
+    document.querySelectorAll(".custom-select i").forEach((ic) => {
+      ic.style.transform = "rotate(0deg)";
+    });
+    if (!isOpen) {
+      options.classList.remove("hidden");
+      icon.style.transform = "rotate(180deg)";
+    } else {
+      options.classList.add("hidden");
+      icon.style.transform = "rotate(0deg)";
+    }
+  });
+  // اختيار خيار من القائمة
+  options.querySelectorAll(".custom-option").forEach((option) => {
+    option.addEventListener("click", () => {
+      selectedText.textContent = option.dataset.value;
+      selectedText.style.color = "#ffffff";
+      options.classList.add("hidden");
+      icon.style.transform = "rotate(0deg)";
+    });
+  });
+});
+// اغلاق القوائم اذا ضغط المستخدم في اي مكان خارج الـ custom select
+document.addEventListener("click", (e) => {
+  customSelects.forEach((wrapper) => {
+    const select = wrapper.querySelector(".custom-select");
+    const options = wrapper.querySelector(".custom-options");
+    const icon = select.querySelector("i");
+    if (!wrapper.contains(e.target)) {
+      options.classList.add("hidden");
+      icon.style.transform = "rotate(0deg)";
+    }
+  });
+});
