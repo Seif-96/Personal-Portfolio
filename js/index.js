@@ -322,22 +322,22 @@ dots.forEach((dot) => {
 });
 next.addEventListener("click", () => slide(1));
 prev.addEventListener("click", () => slide(-1));
-
-// كل الـ custom selects
+// form
+// allcustom selects
 const customSelects = document.querySelectorAll(".custom-select-wrapper");
-
 customSelects.forEach((wrapper) => {
   const select = wrapper.querySelector(".custom-select");
   const options = wrapper.querySelector(".custom-options");
   const icon = select.querySelector("i");
   const selectedText = select.querySelector(".selected-text");
-  // فتح/غلق القائمة عند الضغط على select
+  // open custom-options
   select.addEventListener("click", () => {
     const isOpen = !options.classList.contains("hidden");
-    // اغلاق كل القوائم الاخرى
+    // close author custom-options
     document.querySelectorAll(".custom-options").forEach((opt) => {
       opt.classList.add("hidden");
     });
+    // rotate icon
     document.querySelectorAll(".custom-select i").forEach((ic) => {
       ic.style.transform = "rotate(0deg)";
     });
@@ -349,7 +349,7 @@ customSelects.forEach((wrapper) => {
       icon.style.transform = "rotate(0deg)";
     }
   });
-  // اختيار خيار من القائمة
+  // chose option
   options.querySelectorAll(".custom-option").forEach((option) => {
     option.addEventListener("click", () => {
       selectedText.textContent = option.dataset.value;
@@ -359,7 +359,7 @@ customSelects.forEach((wrapper) => {
     });
   });
 });
-// اغلاق القوائم اذا ضغط المستخدم في اي مكان خارج الـ custom select
+// close custom Selects
 document.addEventListener("click", (e) => {
   customSelects.forEach((wrapper) => {
     const select = wrapper.querySelector(".custom-select");
