@@ -298,30 +298,57 @@ filters.forEach((btn) => {
   });
 });
 // the slider
-const carousel = document.querySelector("#testimonials-carousel");
-const slides = document.querySelectorAll(".testimonial-card");
-const next = document.querySelector("#next-testimonial");
-const prev = document.querySelector("#prev-testimonial");
-const dots = document.querySelectorAll(".carousel-indicator");
-
-let index = 0;
-// display
-function slide(step) {
-  index += step;
-  if (index >= slides.length) index = 0;
-  if (index < 0) index = slides.length - 1;
-  carousel.style.transform = `translateX(-${index * 33.333}%)`;
-  dots.forEach((dot) => dot.classList.remove("bg-accent", "active"));
-  if (dots[index]) dots[index].classList.add("bg-accent", "active");
+let btnCards = document.querySelectorAll(".portfolio-filter");
+let Cards = document.querySelectorAll(".portfolio-item");
+let carouselCards = document.querySelector("#testimonials-carousel");
+let cards = document.querySelectorAll(".testimonial-card");
+let prev = document.querySelector("#prev-testimonial");
+let next = document.querySelector("#next-testimonial");
+let dots = document.querySelectorAll(".carousel-indicator");
+let current = 0;
+// next
+next.addEventListener("click", function () {
+  current++;
+  if (current > cards.length - 3) {
+    current = 0;
+  }
+  move();
+});
+// prev
+prev.addEventListener("click", function () {
+  current--;
+  if (current < 0) {
+    current = cards.length - 3;
+  }
+  move();
+});
+// move translateX
+function move() {
+  carouselCards.style.transform = "translateX(" + current * (100 / 3) + "%)";
+  updateActiveDot();
 }
-dots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    index = Number(dot.dataset.index);
-    slide(0);
+// update Active Dot style
+function updateActiveDot() {
+  dots.forEach(function (dot) {
+    dot.classList.remove(
+      "bg-accent",
+      "bg-slate-400",
+      "bg-slate-500",
+      "dark:bg-slate-600",
+      "scale-125"
+    );
+    dot.classList.add("bg-slate-400");
+  });
+  dots[current].classList.remove("bg-slate-400", "dark:bg-slate-600");
+  dots[current].classList.add("bg-accent", "scale-125");
+}
+// dots
+dots.forEach(function (dot, i) {
+  dot.addEventListener("click", function () {
+    current = i;
+    move();
   });
 });
-next.addEventListener("click", () => slide(1));
-prev.addEventListener("click", () => slide(-1));
 // form
 // allcustom selects
 const customSelects = document.querySelectorAll(".custom-select-wrapper");
