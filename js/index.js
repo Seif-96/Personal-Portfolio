@@ -308,23 +308,26 @@ let dots = document.querySelectorAll(".carousel-indicator");
 let current = 0;
 // next
 next.addEventListener("click", function () {
+  let i = getVisibleCards();
   current++;
-  if (current > cards.length - 3) {
+  if (current > cards.length - i) {
     current = 0;
   }
   move();
 });
 // prev
 prev.addEventListener("click", function () {
+  let i = getVisibleCards();
   current--;
   if (current < 0) {
-    current = cards.length - 3;
+    current = cards.length - i;
   }
   move();
 });
 // move translateX
 function move() {
-  carouselCards.style.transform = "translateX(" + current * (100 / 3) + "%)";
+  let i = getVisibleCards();
+  carouselCards.style.transform = "translateX(" + current * (100 / i) + "%)";
   updateActiveDot();
 }
 // update Active Dot style
@@ -349,6 +352,15 @@ dots.forEach(function (dot, i) {
     move();
   });
 });
+function getVisibleCards() {
+  if (window.innerWidth < 640) {
+    return 1; // موبايل
+  } else if (window.innerWidth < 1024) {
+    return 2; // تابلت
+  } else {
+    return 3; // لاب
+  }
+}
 // form
 // allcustom selects
 const customSelects = document.querySelectorAll(".custom-select-wrapper");
