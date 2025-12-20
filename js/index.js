@@ -392,7 +392,11 @@ customSelects.forEach((wrapper) => {
   options.querySelectorAll(".custom-option").forEach((option) => {
     option.addEventListener("click", () => {
       selectedText.textContent = option.dataset.value;
-      selectedText.style.color = "#ffffff";
+      if (html.classList.contains("dark")) {
+        selectedText.style.color = "#ffffff";
+      } else {
+        selectedText.style.color = "black";
+      }
       options.classList.add("hidden");
       icon.style.transform = "rotate(0deg)";
     });
